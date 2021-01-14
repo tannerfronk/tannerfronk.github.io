@@ -1,7 +1,18 @@
 ---
 layout: post
-title:  "Test"
-date:   2021-01-12 12:50:37 -0700
+title:  "Research and Learning"
+date:   2021-01-13 5:33:23 -0700
 categories: blog post
 ---
-Check back soon!
+# Researching on the Web
+There is a LOT of information on the web, and it can be frustrating to find what you need. Especially when it comes down to not knowing what you know, you know? For me, I always start with Google, and a blanket statement for what I am doing if I don't know all of the specifics. For example, I recently wanted my terminal to save my Github personal token so I could stop disrupting my work flow by asking for it every 15 minutes. I started with a basic search in Google: "terminal keep github credentials". It led me to a document on GitHub titled "Caching your GitHub credentitals. Boom, we are in business! Unfortunately, it doesn't happen that way every time and I am left searching a lot longer, especially when I don't know exactly what I am looking for. I always start with the generic blanket statement in plain English, then based on those findings try to adjust and add more into it. Never be afraid to ask Google direct questions, either. So many times I have found what I am looking for because some stranger on the internet had the same question as me.
+
+# Tutorial Hell
+Tutorial Hell is a place you can easily find yourself in when beginning to learn programming. There is a large learning curve you have to get over when learning a new method, language, or tool. Everyone has to go through the initial rhythms by learning from a video tutorial, or even a written one. The problem is, tutorials can be *too* easy to follow. It happens almost without you noticing because you are really into what you are learning. Then, all of a sudden you realize you don't know exactly what you are doing, and you jump back to the tutorial to continue following along. You get into a vicious cycle where you feel you are learning from the tutorial, get back to being on your own, then back to the tutorial. It's all about comfort zones, and the tutorial starts serving that purpose. The best learning for me has always happened when I allow myself to step outside of my comfort zone. Let yourself fail, let yourself learn.
+
+Tutorials aren't all bad, but play around with it and try to make it your own. Test what would happen in other circumstances, or even try to break it on *purpose*. The more you deprive yourself of actual learning the longer you will stay in the dreaded Tutorial Hell.
+
+# What Helps Me Learn?
+After I got past the initial learning curve with JavaScript, I felt overwhelmed and somewhat accomplished. I realized that I didn't get there without an open mind. Web Development at times can feel like a lot, especially when you're confronted with a new tool. I have found comfort in jumping into the accompanied documentation for a new tool. Not all documentation is created equal, and there are some truly awful docs that I have had to trudge through to understand how something works. I have found that for me, it helps to take the same open mind I had with beginning to learn JavaScript, and apply it to a new tool. It may feel overwhelming at first, but you just need to get past the first hurdle to start understanding. Then the next. Then after a couple of those hurdles I always feel the same accomplishment, and look back on what I initially thought would be really difficult and can say that I now understand it. Or, at least I have improved.
+
+For anyone new to web development, I would urge them to keep that same open mind. This field is rapidly changing all the time. There is always going to be a new language and framework to use and learn. You need to be okay with continually learning, and make efforts to actively learn. It's okay to not know everything because it would be impossible. I have found that as I learn more and more, a lot of things are more easily understood because it resembles pieces of other previously learned skills. Your experience will help you as long as you try and build your experience.
