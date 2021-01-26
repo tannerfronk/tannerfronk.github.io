@@ -15,7 +15,7 @@ Confusing right? Lets look at an example:
 
 I created a branch off of hash **e127e9b** and did some work. Since then, there have been two commits added to master with more up to date work. To continue working with my branch, I need to incorporate the new version of master into my branch without merging. I need to *rebase* onto the newest version of master. This is very easy to do, first we will make sure we have checked out the feature-A branch. Then, **git rebase master**. The syntax of this is easy, as we are just telling git to rebase to the desired branch. Here are the results:
 
-![feature branch is out of date from master](/images/rebase2.png) 
+![feature branch is now based on latest master](/images/rebase2.png) 
 
 From this screenshot, you can now see the two commits in feature-A, are now in front of the master branch. You can see the dotted circles are where feature-A used to be. From doing this, we have successfully brought our branch and all of it's history infront of master. We can work with the most update version of master while finishing feature-A, and ensure we are working out any issues with the latest version. This is what version control is all about! Our commit history is intact, doesn't interfere with what was recently done in master, and we can keep working with confidence.
 
@@ -118,23 +118,23 @@ Now that we know all about **reset, checkout, and revert**, lets look at them in
 
 #### Git Reset Example:
 
-![feature branch is out of date from master](/images/gitreset1.png) 
+![git reset example](/images/gitreset1.png) 
 
 #### Git Checkout Branch Example:
 
-![feature branch is out of date from master](/images/gitcheckout1.png) 
+![git checkout example](/images/gitcheckout1.png) 
 
 #### Git Checkout Commit Example:
 
-![feature branch is out of date from master](/images/gitcheckout2.png) 
+![git checkout commit example](/images/gitcheckout2.png) 
 
 #### Git Checkout File Example:
 
-![feature branch is out of date from master](/images/gitcheckout3.png) 
+![git checkout file example](/images/gitcheckout3.png) 
 
 #### Git Revert Example:
 
-![feature branch is out of date from master](/images/gitrevert.png) 
+![git revert example](/images/gitrevert.png) 
 
 ## Git Submodules
 
