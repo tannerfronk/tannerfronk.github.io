@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-25T18:51:36-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">A dev blog by Tanner Fronk</title><subtitle>This is a student blog for me to show off my development skills in DGM 3780</subtitle><entry><title type="html">Advanced Git</title><link href="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html" rel="alternate" type="text/html" title="Advanced Git" /><published>2021-01-25T05:33:23-07:00</published><updated>2021-01-25T05:33:23-07:00</updated><id>http://localhost:4000/blog/post/2021/01/25/Advanced-Git</id><content type="html" xml:base="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html">&lt;h1 id=&quot;less-commonly-used-git-features&quot;&gt;Less Commonly Used Git Features&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-25T19:27:56-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">A dev blog by Tanner Fronk</title><subtitle>This is a student blog for me to show off my development skills in DGM 3780</subtitle><entry><title type="html">Advanced Git</title><link href="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html" rel="alternate" type="text/html" title="Advanced Git" /><published>2021-01-25T05:33:23-07:00</published><updated>2021-01-25T05:33:23-07:00</updated><id>http://localhost:4000/blog/post/2021/01/25/Advanced-Git</id><content type="html" xml:base="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html">&lt;h1 id=&quot;less-commonly-used-git-features&quot;&gt;Less Commonly Used Git Features&lt;/h1&gt;
 &lt;p&gt;Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.&lt;/p&gt;
 
 &lt;h1 id=&quot;git-rebase&quot;&gt;Git Rebase&lt;/h1&gt;
@@ -61,7 +61,63 @@ pick 0e026d9 Starting new features
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset --soft
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;First, lets talk about the - -soft tag. A “soft” reset will keep your staged changes (the ones ready to be commited), and reset everything not currently being edited to the last working commit.&lt;/p&gt;</content><author><name></name></author><category term="blog" /><category term="post" /><summary type="html">Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.</summary></entry><entry><title type="html">Research and Learning</title><link href="http://localhost:4000/blog/post/2021/01/13/research-and-learning.html" rel="alternate" type="text/html" title="Research and Learning" /><published>2021-01-13T05:33:23-07:00</published><updated>2021-01-13T05:33:23-07:00</updated><id>http://localhost:4000/blog/post/2021/01/13/research-and-learning</id><content type="html" xml:base="http://localhost:4000/blog/post/2021/01/13/research-and-learning.html">&lt;h1 id=&quot;researching-on-the-web&quot;&gt;Researching on the Web&lt;/h1&gt;
+&lt;p&gt;First, lets talk about the - -soft tag. A “soft” reset will keep your changes and put you back at the HEAD of your branch. This helps you keep what you are working with and revert back to the HEAD of your branch to get rid of any commits you aren’t satisfied with.&lt;/p&gt;
+
+&lt;h4 id=&quot;hard-reset&quot;&gt;Hard Reset&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset --hard
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A hard reset will completely revert everything in your working directory to the last commit. Anything that is not commited will be lost, even if you added it as a staged and ready to be commited change. Only use this when you want to completely lose all your unsaved changes.&lt;/p&gt;
+
+&lt;h4 id=&quot;mixed-reset&quot;&gt;Mixed Reset&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset --mixed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You guessed it, this one is a mix between a hard and soft reset. You will not lose any of your changes made if they are staged to be commited, and everything else will be reset back to the HEAD of your branch.&lt;/p&gt;
+
+&lt;h3 id=&quot;git-checkout&quot;&gt;Git Checkout&lt;/h3&gt;
+
+&lt;p&gt;Git checkout allows you to change the branch you are currently working in. Similar to my example above, if we want to switch from master to feature-A, we will do the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout feature-A
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Similarly, if we want to change back to master:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are some notable options we can add to git checkout. -f will force the switch to a new branch even if the index or working tree differs from the HEAD. Any unsaved changes are lost. -b will create a new branch from your current HEAD:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout -b feature-B
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Checkout can also be used to discard file changes.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout -- &amp;lt;file&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will cause the specified file to revert back to the last commit involving it. This is a risky command because you cannot retrieve any local changes that are reverted.&lt;/p&gt;
+
+&lt;p&gt;One last notable checkout command is used to changing the HEAD of your branch to a specific commit:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout &amp;lt;commit&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;git-revert&quot;&gt;Git Revert&lt;/h3&gt;
+
+&lt;p&gt;Git Revert can be used to go back to a previous commit. For example, if your latest commit is C and want to go back to commit A, use the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git revert &amp;lt;commit A hash&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will take you back to the moment commit A was created, and you are now working as if commit B and C no longer exist.&lt;/p&gt;
+
+&lt;h3 id=&quot;all-together-now&quot;&gt;All Together Now&lt;/h3&gt;
+
+&lt;p&gt;Now that we know all about &lt;strong&gt;reset, checkout, and revert&lt;/strong&gt; lets look at them in action.&lt;/p&gt;</content><author><name></name></author><category term="blog" /><category term="post" /><summary type="html">Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.</summary></entry><entry><title type="html">Research and Learning</title><link href="http://localhost:4000/blog/post/2021/01/13/research-and-learning.html" rel="alternate" type="text/html" title="Research and Learning" /><published>2021-01-13T05:33:23-07:00</published><updated>2021-01-13T05:33:23-07:00</updated><id>http://localhost:4000/blog/post/2021/01/13/research-and-learning</id><content type="html" xml:base="http://localhost:4000/blog/post/2021/01/13/research-and-learning.html">&lt;h1 id=&quot;researching-on-the-web&quot;&gt;Researching on the Web&lt;/h1&gt;
 &lt;p&gt;There is a LOT of information on the web, and it can be frustrating to find what you need. Especially when it comes down to not knowing what you know, you know? For me, I always start with Google, and a blanket statement for what I am doing if I don’t know all of the specifics. For example, I recently wanted my terminal to save my Github personal token so I could stop disrupting my work flow by asking for it every 15 minutes. I started with a basic search in Google: “terminal keep github credentials”. It led me to a document on GitHub titled “Caching your GitHub credentitals. Boom, we are in business! Unfortunately, it doesn’t happen that way every time and I am left searching a lot longer, especially when I don’t know exactly what I am looking for. I always start with the generic blanket statement in plain English, then based on those findings try to adjust and add more into it. Never be afraid to ask Google direct questions, either. So many times I have found what I am looking for because some stranger on the internet had the same question as me.&lt;/p&gt;
 
 &lt;h1 id=&quot;tutorial-hell&quot;&gt;Tutorial Hell&lt;/h1&gt;

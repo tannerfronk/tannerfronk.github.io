@@ -64,4 +64,52 @@ Simply put, "git reset" will reset your current work. It can do so both for stag
 
     git reset --soft
 
-First, lets talk about the - -soft tag. A "soft" reset will keep your staged changes (the ones ready to be commited), and reset everything not currently being edited to the last working commit.
+First, lets talk about the - -soft tag. A "soft" reset will keep your changes and put you back at the HEAD of your branch. This helps you keep what you are working with and revert back to the HEAD of your branch to get rid of any commits you aren't satisfied with. 
+
+#### Hard Reset
+
+    git reset --hard
+
+A hard reset will completely revert everything in your working directory to the last commit. Anything that is not commited will be lost, even if you added it as a staged and ready to be commited change. Only use this when you want to completely lose all your unsaved changes.
+
+#### Mixed Reset
+
+    git reset --mixed
+
+You guessed it, this one is a mix between a hard and soft reset. You will not lose any of your changes made if they are staged to be commited, and everything else will be reset back to the HEAD of your branch.
+
+### Git Checkout
+
+Git checkout allows you to change the branch you are currently working in. Similar to my example above, if we want to switch from master to feature-A, we will do the following:
+
+    git checkout feature-A
+
+Similarly, if we want to change back to master:
+
+    git checkout master
+
+There are some notable options we can add to git checkout. -f will force the switch to a new branch even if the index or working tree differs from the HEAD. Any unsaved changes are lost. -b will create a new branch from your current HEAD:
+
+    git checkout -b feature-B
+
+Checkout can also be used to discard file changes.
+
+    git checkout -- <file>
+
+This will cause the specified file to revert back to the last commit involving it. This is a risky command because you cannot retrieve any local changes that are reverted.
+
+One last notable checkout command is used to changing the HEAD of your branch to a specific commit:
+
+    git checkout <commit>
+
+### Git Revert
+
+Git Revert can be used to go back to a previous commit. For example, if your latest commit is C and want to go back to commit A, use the following:
+
+    git revert <commit A hash>
+
+This will take you back to the moment commit A was created, and you are now working as if commit B and C no longer exist.
+
+### All Together Now
+
+Now that we know all about **reset, checkout, and revert** lets look at them in action.
