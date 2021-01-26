@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Advanced Git | A dev blog by Tanner Fronk</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Advanced Git" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam." />
+<meta property="og:description" content="Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam." />
+<link rel="canonical" href="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html" />
+<meta property="og:url" content="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html" />
+<meta property="og:site_name" content="A dev blog by Tanner Fronk" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-25T05:33:23-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Advanced Git" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Advanced Git","dateModified":"2021-01-25T05:33:23-07:00","datePublished":"2021-01-25T05:33:23-07:00","url":"http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html"},"description":"Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="A dev blog by Tanner Fronk" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">A dev blog by Tanner Fronk</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Advanced Git</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-01-25T05:33:23-07:00" itemprop="datePublished">Jan 25, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="less-commonly-used-git-features">Less Commonly Used Git Features</h1>
+<p>Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.</p>
+
+<h1 id="git-rebase">Git Rebase</h1>
+<p>What is rebasing? It might sound complicated, but the simplest way it can be explained is to take a branch that was created off of one commit, and place it as a branch on another “base” commit. For example, imagine you are developing a new feature that lives on a new branch. This was created off of the main branch in your company’s organizational git repository. Your coworker was working on something else that is relevant to your feature and merged their changes to the main branch. Well, now the original branch you were working off of is now out of date. You <em>could</em> merge the new main branch version into your branch so it is up to date, but now your merge history with this feature is all funked up and harder to work with. Instead, you decide to slightly change the history of your current branch and base it off the new version of the main branch. This helps you continue working with the updated code, but now your commit history on this branch is the same as it was as if we moved it forward in time. Nothing in your branch changed, and it will look as if you started working off of the most recent commit in the main branch, and you can continue working as if nothing happened.</p>
+
+<p>Confusing right? Lets look at an example:
+<img src="/images/rebase1.png" alt="feature branch is out of date from master" /></p>
+
+<p>I created a branch off of hash <strong>e127e9b</strong> and did some work. Since then, there have been two commits added to master with more up to date work. To continue working with my branch, I need to incorporate the new version of master into my branch without merging. I need to <em>rebase</em> onto the newest version of master. This is very easy to do, first we will make sure we have checked out the feature-A branch. Then, <strong>git rebase master</strong>. The syntax of this is easy, as we are just telling git to rebase to the desired branch. Here are the results:</p>
+
+<p><img src="/images/rebase2.png" alt="feature branch is out of date from master" /></p>
+
+<p>From this screenshot, you can now see the two commits in feature-A, are now in front of the master branch. You can see the dotted circles are where feature-A used to be. From doing this, we have successfully brought our branch and all of it’s history infront of master. We can work with the most update version of master while finishing feature-A, and ensure we are working out any issues with the latest version. This is what version control is all about! Our commit history is intact, doesn’t interfere with what was recently done in master, and we can keep working with confidence.</p>
+
+<h4 id="changing-history">Changing history</h4>
+
+<p>With the last example, we did not edit the history at all for what was done in our branch. Everything was carried over, the good and the bad. Now, let’s say we have a somewhat messy history and don’t want to pull every commit over, just the ones that matter? Luckily for us, we have <strong>Interactive rebasing</strong>. This takes into account everything we just talked about, but with a tag added before we define the branch we want to rebase to. For example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git rebase -i master
+</code></pre></div></div>
+
+<p>This will give us a new prompt to choose the commits that we want to have move with us.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pick 549d460 Tanner Fronk
+pick 0e026d9 Starting new features
+
+# Rebase 8db7e8b..fa20af3 onto 8db7e8b
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+</code></pre></div></div>
+
+<p>From here we can change the history about our branch and the commits. We can just bring the commit over (pick), edit the commit message (reword), delete (squash), or combine (fixup). Interactive rebasing is very powerful and is useful when wanting to cleanup a branch that may have a lot of clutter we don’t want to bring.</p>
+
+<p>Okay, so rebasing is useful for a lot of different reasons, but when should you <strong>not</strong> use it? The best way to quickly sum it up is: conflicts. If you use rebase wrong, you can cause even bigger headaches than you think you may fix. Never, under any circumstance, rebase master onto a branch. This will cause git to think your branch and master are completely different. If you are able to merge the two together, your merge history is going to have twice the amount of commits and be very hard to go back to in case you have read the repository’s history. What is more likely to happen when using rebase wrong, is conflicts. Git will think that you are trying to merge two conflicting versions, and you may end up losing a lot of the progress you wanted to keep. Especially when working with bigger code bases, the risk will only rise. So, the best rule of thumb is to only ever rebase your specific branch around master, and leave master where it is. There is no reason in a regular git workflow that master should ever be moved ahead of itself.</p>
+
+<h2 id="stage-based-git">Stage Based Git</h2>
+
+<p>When working with Git, you are always working with what is staged, and unstaged. You will be thinking about what you want to work with, what you want to track, delete, or branch out. Since Git is an incredibly powerful tool, there are some great commands to help you along the way.</p>
+
+<h3 id="git-reset">Git Reset</h3>
+
+<p>Simply put, “git reset” will reset your current work. It can do so both for staged and unstaged changes.</p>
+
+<h4 id="soft-reset">Soft Reset</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --soft
+</code></pre></div></div>
+
+<p>First, lets talk about the - -soft tag. A “soft” reset will keep your staged changes (the ones ready to be commited), and reset everything not currently being edited to the last working commit.</p>
+
+  </div><a class="u-url" href="/blog/post/2021/01/25/Advanced-Git.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">A dev blog by Tanner Fronk</li><li><a class="u-email" href="mailto:tannerfronk@gmail.com">tannerfronk@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tannerfronk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tannerfronk</span></a></li><li><a href="https://instagram.com/tannerfronk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#instagram"></use></svg> <span class="username">tannerfronk</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This is a student blog for me to show off my development skills in DGM 3780</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

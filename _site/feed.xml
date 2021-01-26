@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-25T17:38:57-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">A dev blog by Tanner Fronk</title><subtitle>This is a student blog for me to show off my development skills in DGM 3780</subtitle><entry><title type="html">Advanced Git</title><link href="http://localhost:4000/2021/01/25/Advanced-Git.html" rel="alternate" type="text/html" title="Advanced Git" /><published>2021-01-25T00:00:00-07:00</published><updated>2021-01-25T00:00:00-07:00</updated><id>http://localhost:4000/2021/01/25/Advanced-Git</id><content type="html" xml:base="http://localhost:4000/2021/01/25/Advanced-Git.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Research and Learning</title><link href="http://localhost:4000/blog/post/2021/01/13/research-and-learning.html" rel="alternate" type="text/html" title="Research and Learning" /><published>2021-01-13T05:33:23-07:00</published><updated>2021-01-13T05:33:23-07:00</updated><id>http://localhost:4000/blog/post/2021/01/13/research-and-learning</id><content type="html" xml:base="http://localhost:4000/blog/post/2021/01/13/research-and-learning.html">&lt;h1 id=&quot;researching-on-the-web&quot;&gt;Researching on the Web&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-25T18:51:36-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">A dev blog by Tanner Fronk</title><subtitle>This is a student blog for me to show off my development skills in DGM 3780</subtitle><entry><title type="html">Advanced Git</title><link href="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html" rel="alternate" type="text/html" title="Advanced Git" /><published>2021-01-25T05:33:23-07:00</published><updated>2021-01-25T05:33:23-07:00</updated><id>http://localhost:4000/blog/post/2021/01/25/Advanced-Git</id><content type="html" xml:base="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html">&lt;h1 id=&quot;less-commonly-used-git-features&quot;&gt;Less Commonly Used Git Features&lt;/h1&gt;
+&lt;p&gt;Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.&lt;/p&gt;
+
+&lt;h1 id=&quot;git-rebase&quot;&gt;Git Rebase&lt;/h1&gt;
+&lt;p&gt;What is rebasing? It might sound complicated, but the simplest way it can be explained is to take a branch that was created off of one commit, and place it as a branch on another “base” commit. For example, imagine you are developing a new feature that lives on a new branch. This was created off of the main branch in your company’s organizational git repository. Your coworker was working on something else that is relevant to your feature and merged their changes to the main branch. Well, now the original branch you were working off of is now out of date. You &lt;em&gt;could&lt;/em&gt; merge the new main branch version into your branch so it is up to date, but now your merge history with this feature is all funked up and harder to work with. Instead, you decide to slightly change the history of your current branch and base it off the new version of the main branch. This helps you continue working with the updated code, but now your commit history on this branch is the same as it was as if we moved it forward in time. Nothing in your branch changed, and it will look as if you started working off of the most recent commit in the main branch, and you can continue working as if nothing happened.&lt;/p&gt;
+
+&lt;p&gt;Confusing right? Lets look at an example:
+&lt;img src=&quot;/images/rebase1.png&quot; alt=&quot;feature branch is out of date from master&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I created a branch off of hash &lt;strong&gt;e127e9b&lt;/strong&gt; and did some work. Since then, there have been two commits added to master with more up to date work. To continue working with my branch, I need to incorporate the new version of master into my branch without merging. I need to &lt;em&gt;rebase&lt;/em&gt; onto the newest version of master. This is very easy to do, first we will make sure we have checked out the feature-A branch. Then, &lt;strong&gt;git rebase master&lt;/strong&gt;. The syntax of this is easy, as we are just telling git to rebase to the desired branch. Here are the results:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/rebase2.png&quot; alt=&quot;feature branch is out of date from master&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From this screenshot, you can now see the two commits in feature-A, are now in front of the master branch. You can see the dotted circles are where feature-A used to be. From doing this, we have successfully brought our branch and all of it’s history infront of master. We can work with the most update version of master while finishing feature-A, and ensure we are working out any issues with the latest version. This is what version control is all about! Our commit history is intact, doesn’t interfere with what was recently done in master, and we can keep working with confidence.&lt;/p&gt;
+
+&lt;h4 id=&quot;changing-history&quot;&gt;Changing history&lt;/h4&gt;
+
+&lt;p&gt;With the last example, we did not edit the history at all for what was done in our branch. Everything was carried over, the good and the bad. Now, let’s say we have a somewhat messy history and don’t want to pull every commit over, just the ones that matter? Luckily for us, we have &lt;strong&gt;Interactive rebasing&lt;/strong&gt;. This takes into account everything we just talked about, but with a tag added before we define the branch we want to rebase to. For example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git rebase -i master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will give us a new prompt to choose the commits that we want to have move with us.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pick 549d460 Tanner Fronk
+pick 0e026d9 Starting new features
+
+# Rebase 8db7e8b..fa20af3 onto 8db7e8b
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like &quot;squash&quot;, but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From here we can change the history about our branch and the commits. We can just bring the commit over (pick), edit the commit message (reword), delete (squash), or combine (fixup). Interactive rebasing is very powerful and is useful when wanting to cleanup a branch that may have a lot of clutter we don’t want to bring.&lt;/p&gt;
+
+&lt;p&gt;Okay, so rebasing is useful for a lot of different reasons, but when should you &lt;strong&gt;not&lt;/strong&gt; use it? The best way to quickly sum it up is: conflicts. If you use rebase wrong, you can cause even bigger headaches than you think you may fix. Never, under any circumstance, rebase master onto a branch. This will cause git to think your branch and master are completely different. If you are able to merge the two together, your merge history is going to have twice the amount of commits and be very hard to go back to in case you have read the repository’s history. What is more likely to happen when using rebase wrong, is conflicts. Git will think that you are trying to merge two conflicting versions, and you may end up losing a lot of the progress you wanted to keep. Especially when working with bigger code bases, the risk will only rise. So, the best rule of thumb is to only ever rebase your specific branch around master, and leave master where it is. There is no reason in a regular git workflow that master should ever be moved ahead of itself.&lt;/p&gt;
+
+&lt;h2 id=&quot;stage-based-git&quot;&gt;Stage Based Git&lt;/h2&gt;
+
+&lt;p&gt;When working with Git, you are always working with what is staged, and unstaged. You will be thinking about what you want to work with, what you want to track, delete, or branch out. Since Git is an incredibly powerful tool, there are some great commands to help you along the way.&lt;/p&gt;
+
+&lt;h3 id=&quot;git-reset&quot;&gt;Git Reset&lt;/h3&gt;
+
+&lt;p&gt;Simply put, “git reset” will reset your current work. It can do so both for staged and unstaged changes.&lt;/p&gt;
+
+&lt;h4 id=&quot;soft-reset&quot;&gt;Soft Reset&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset --soft
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;First, lets talk about the - -soft tag. A “soft” reset will keep your staged changes (the ones ready to be commited), and reset everything not currently being edited to the last working commit.&lt;/p&gt;</content><author><name></name></author><category term="blog" /><category term="post" /><summary type="html">Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.</summary></entry><entry><title type="html">Research and Learning</title><link href="http://localhost:4000/blog/post/2021/01/13/research-and-learning.html" rel="alternate" type="text/html" title="Research and Learning" /><published>2021-01-13T05:33:23-07:00</published><updated>2021-01-13T05:33:23-07:00</updated><id>http://localhost:4000/blog/post/2021/01/13/research-and-learning</id><content type="html" xml:base="http://localhost:4000/blog/post/2021/01/13/research-and-learning.html">&lt;h1 id=&quot;researching-on-the-web&quot;&gt;Researching on the Web&lt;/h1&gt;
 &lt;p&gt;There is a LOT of information on the web, and it can be frustrating to find what you need. Especially when it comes down to not knowing what you know, you know? For me, I always start with Google, and a blanket statement for what I am doing if I don’t know all of the specifics. For example, I recently wanted my terminal to save my Github personal token so I could stop disrupting my work flow by asking for it every 15 minutes. I started with a basic search in Google: “terminal keep github credentials”. It led me to a document on GitHub titled “Caching your GitHub credentitals. Boom, we are in business! Unfortunately, it doesn’t happen that way every time and I am left searching a lot longer, especially when I don’t know exactly what I am looking for. I always start with the generic blanket statement in plain English, then based on those findings try to adjust and add more into it. Never be afraid to ask Google direct questions, either. So many times I have found what I am looking for because some stranger on the internet had the same question as me.&lt;/p&gt;
 
 &lt;h1 id=&quot;tutorial-hell&quot;&gt;Tutorial Hell&lt;/h1&gt;
