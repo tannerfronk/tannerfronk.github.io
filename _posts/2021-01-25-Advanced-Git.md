@@ -11,11 +11,11 @@ Git can get complex quickly, and it is important to know what to do when problem
 What is rebasing? It might sound complicated, but the simplest way it can be explained is to take a branch that was created off of one commit, and place it as a branch on another "base" commit. For example, imagine you are developing a new feature that lives on a new branch. This was created off of the main branch in your company's organizational git repository. Your coworker was working on something else that is relevant to your feature and merged their changes to the main branch. Well, now the original branch you were working off of is now out of date. You *could* merge the new main branch version into your branch so it is up to date, but now your merge history with this feature is all funked up and harder to work with. Instead, you decide to slightly change the history of your current branch and base it off the new version of the main branch. This helps you continue working with the updated code, but now your commit history on this branch is the same as it was as if we moved it forward in time. Nothing in your branch changed, and it will look as if you started working off of the most recent commit in the main branch, and you can continue working as if nothing happened. 
 
 Confusing right? Lets look at an example:
-![feature branch is out of date from master](/images/rebase1.png) 
+![feature branch is out of date from master](/assets/rebase1.png) 
 
 I created a branch off of hash **e127e9b** and did some work. Since then, there have been two commits added to master with more up to date work. To continue working with my branch, I need to incorporate the new version of master into my branch without merging. I need to *rebase* onto the newest version of master. This is very easy to do, first we will make sure we have checked out the feature-A branch. Then, **git rebase master**. The syntax of this is easy, as we are just telling git to rebase to the desired branch. Here are the results:
 
-![feature branch is now based on latest master](/images/rebase2.png) 
+![feature branch is now based on latest master](/assets/rebase2.png) 
 
 From this screenshot, you can now see the two commits in feature-A, are now in front of the master branch. You can see the dotted circles are where feature-A used to be. From doing this, we have successfully brought our branch and all of it's history infront of master. We can work with the most update version of master while finishing feature-A, and ensure we are working out any issues with the latest version. This is what version control is all about! Our commit history is intact, doesn't interfere with what was recently done in master, and we can keep working with confidence.
 
@@ -118,23 +118,23 @@ Now that we know all about **reset, checkout, and revert**, lets look at them in
 
 #### Git Reset Example:
 
-![git reset example](/images/gitreset1.png) 
+![git reset example](/assets/gitreset1.png) 
 
 #### Git Checkout Branch Example:
 
-![git checkout example](/images/gitcheckout1.png) 
+![git checkout example](/assets/gitcheckout1.png) 
 
 #### Git Checkout Commit Example:
 
-![git checkout commit example](/images/gitcheckout2.png) 
+![git checkout commit example](/assets/gitcheckout2.png) 
 
 #### Git Checkout File Example:
 
-![git checkout file example](/images/gitcheckout3.png) 
+![git checkout file example](/assets/gitcheckout3.png) 
 
 #### Git Revert Example:
 
-![git revert example](/images/gitrevert.png) 
+![git revert example](/assets/gitrevert.png) 
 
 ## Git Submodules
 
