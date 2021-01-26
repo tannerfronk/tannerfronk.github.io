@@ -58,23 +58,23 @@ When working with Git, you are always working with what is staged, and unstaged.
 
 ### Git Reset
 
-Simply put, "git reset" will reset your current work. It can do so both for staged and unstaged changes. 
+Simply put, "git reset" will reset your current work. It can do so both for staged and unstaged changes. With no additional tags, this will unstage any changes.
 
 #### Soft Reset
 
-    git reset --soft
+    git reset --soft <commit>
 
 First, lets talk about the - -soft tag. A "soft" reset will keep your changes and put you back at the HEAD of your branch. This helps you keep what you are working with and revert back to the HEAD of your branch to get rid of any commits you aren't satisfied with. 
 
 #### Hard Reset
 
-    git reset --hard
+    git reset --hard <commit>
 
 A hard reset will completely revert everything in your working directory to the last commit. Anything that is not commited will be lost, even if you added it as a staged and ready to be commited change. Only use this when you want to completely lose all your unsaved changes.
 
 #### Mixed Reset
 
-    git reset --mixed
+    git reset --mixed <commit>
 
 You guessed it, this one is a mix between a hard and soft reset. You will not lose any of your changes made if they are staged to be commited, and everything else will be reset back to the HEAD of your branch.
 
@@ -92,15 +92,17 @@ There are some notable options we can add to git checkout. -f will force the swi
 
     git checkout -b feature-B
 
-Checkout can also be used to discard file changes.
+Checkout can also be used to pull specific file versions.
 
-    git checkout -- <file>
+    git checkout branch -- <file>
 
-This will cause the specified file to revert back to the last commit involving it. This is a risky command because you cannot retrieve any local changes that are reverted.
+This will cause the specified file to change to the version in the commit specified. This is a risky command because you cannot retrieve any local changes that are reverted.
 
 One last notable checkout command is used to changing the HEAD of your branch to a specific commit:
 
     git checkout <commit>
+
+It is worth noting when using this command your branch will checkout the commit as a detached HEAD.
 
 ### Git Revert
 
@@ -110,6 +112,30 @@ Git Revert can be used to go back to a previous commit. For example, if your lat
 
 This will take you back to the moment commit A was created, and you are now working as if commit B and C no longer exist.
 
-### All Together Now
+### Some Examples
 
-Now that we know all about **reset, checkout, and revert** lets look at them in action.
+Now that we know all about **reset, checkout, and revert**, lets look at them in action.
+
+#### Git Reset Example:
+
+![feature branch is out of date from master](/images/gitreset1.png) 
+
+#### Git Checkout Branch Example:
+
+![feature branch is out of date from master](/images/gitcheckout1.png) 
+
+#### Git Checkout Commit Example:
+
+![feature branch is out of date from master](/images/gitcheckout2.png) 
+
+#### Git Checkout File Example:
+
+![feature branch is out of date from master](/images/gitcheckout3.png) 
+
+#### Git Revert Example:
+
+![feature branch is out of date from master](/images/gitrevert.png) 
+
+## Git Submodules
+
+A git submodule is like Inception. A git repository inside of a git repository. A submodule would allow you to treat a directory within a project as it's own project. This is useful to help keep separate changes to a specified directory from conflicting with your actual project. These are mostly used when a library is a part of a project, and its contents and changes are handled separately. One advantage to using a git submodule is that it allows you to keep the commits separated. This is hugely useful when libraries are only updated periodically and you need to see what was previously done when updating or making changes. While it is great at keeping your libraries clean and separate from your merge/commit history, there are some downsides. As you can imagine, this increases complexity of upkeep with each level of version control. If you aren't careful you can create merge conflicts that are a headache to repair if you weren't properly paying attention. If both repos are being edited at the same time, and you end up having a mismatch of versions if you aren't careful. However, that last one is more of an issue with bigger projects and/or companies if communication on updating is not solid. When used correctly, git submodules can be great additions to projects and the libraries within.

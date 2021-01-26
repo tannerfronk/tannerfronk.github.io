@@ -103,25 +103,25 @@ pick 0e026d9 Starting new features
 
 <h3 id="git-reset">Git Reset</h3>
 
-<p>Simply put, “git reset” will reset your current work. It can do so both for staged and unstaged changes.</p>
+<p>Simply put, “git reset” will reset your current work. It can do so both for staged and unstaged changes. With no additional tags, this will unstage any changes.</p>
 
 <h4 id="soft-reset">Soft Reset</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --soft
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --soft &lt;commit&gt;
 </code></pre></div></div>
 
 <p>First, lets talk about the - -soft tag. A “soft” reset will keep your changes and put you back at the HEAD of your branch. This helps you keep what you are working with and revert back to the HEAD of your branch to get rid of any commits you aren’t satisfied with.</p>
 
 <h4 id="hard-reset">Hard Reset</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --hard
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --hard &lt;commit&gt;
 </code></pre></div></div>
 
 <p>A hard reset will completely revert everything in your working directory to the last commit. Anything that is not commited will be lost, even if you added it as a staged and ready to be commited change. Only use this when you want to completely lose all your unsaved changes.</p>
 
 <h4 id="mixed-reset">Mixed Reset</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --mixed
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --mixed &lt;commit&gt;
 </code></pre></div></div>
 
 <p>You guessed it, this one is a mix between a hard and soft reset. You will not lose any of your changes made if they are staged to be commited, and everything else will be reset back to the HEAD of your branch.</p>
@@ -143,17 +143,19 @@ pick 0e026d9 Starting new features
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout -b feature-B
 </code></pre></div></div>
 
-<p>Checkout can also be used to discard file changes.</p>
+<p>Checkout can also be used to pull specific file versions.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout -- &lt;file&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout branch -- &lt;file&gt;
 </code></pre></div></div>
 
-<p>This will cause the specified file to revert back to the last commit involving it. This is a risky command because you cannot retrieve any local changes that are reverted.</p>
+<p>This will cause the specified file to change to the version in the commit specified. This is a risky command because you cannot retrieve any local changes that are reverted.</p>
 
 <p>One last notable checkout command is used to changing the HEAD of your branch to a specific commit:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout &lt;commit&gt;
 </code></pre></div></div>
+
+<p>It is worth noting when using this command your branch will checkout the commit as a detached HEAD.</p>
 
 <h3 id="git-revert">Git Revert</h3>
 
@@ -164,9 +166,33 @@ pick 0e026d9 Starting new features
 
 <p>This will take you back to the moment commit A was created, and you are now working as if commit B and C no longer exist.</p>
 
-<h3 id="all-together-now">All Together Now</h3>
+<h3 id="some-examples">Some Examples</h3>
 
-<p>Now that we know all about <strong>reset, checkout, and revert</strong> lets look at them in action.</p>
+<p>Now that we know all about <strong>reset, checkout, and revert</strong>, lets look at them in action.</p>
+
+<h4 id="git-reset-example">Git Reset Example:</h4>
+
+<p><img src="/images/gitreset1.png" alt="feature branch is out of date from master" /></p>
+
+<h4 id="git-checkout-branch-example">Git Checkout Branch Example:</h4>
+
+<p><img src="/images/gitcheckout1.png" alt="feature branch is out of date from master" /></p>
+
+<h4 id="git-checkout-commit-example">Git Checkout Commit Example:</h4>
+
+<p><img src="/images/gitcheckout2.png" alt="feature branch is out of date from master" /></p>
+
+<h4 id="git-checkout-file-example">Git Checkout File Example:</h4>
+
+<p><img src="/images/gitcheckout3.png" alt="feature branch is out of date from master" /></p>
+
+<h4 id="git-revert-example">Git Revert Example:</h4>
+
+<p><img src="/images/gitrevert.png" alt="feature branch is out of date from master" /></p>
+
+<h2 id="git-submodules">Git Submodules</h2>
+
+<p>A git submodule is like Inception. A git repository inside of a git repository. A submodule would allow you to treat a directory within a project as it’s own project. This is useful to help keep separate changes to a specified directory from conflicting with your actual project. These are mostly used when a library is a part of a project, and its contents and changes are handled separately. One advantage to using a git submodule is that it allows you to keep the commits separated. This is hugely useful when libraries are only updated periodically and you need to see what was previously done when updating or making changes. While it is great at keeping your libraries clean and separate from your merge/commit history, there are some downsides. As you can imagine, this increases complexity of upkeep with each level of version control. If you aren’t careful you can create merge conflicts that are a headache to repair if you weren’t properly paying attention. If both repos are being edited at the same time, and you end up having a mismatch of versions if you aren’t careful. However, that last one is more of an issue with bigger projects and/or companies if communication on updating is not solid. When used correctly, git submodules can be great additions to projects and the libraries within.</p>
 
   </div><a class="u-url" href="/blog/post/2021/01/25/Advanced-Git.html" hidden></a>
 </article>
