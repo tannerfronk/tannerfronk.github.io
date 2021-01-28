@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Advanced Git"
-date:   2021-01-25 5:33:23 -0700
+date:   2021-01-26 5:33:23 -0700
 categories: blog post
 ---
 # Less Commonly Used Git Features
