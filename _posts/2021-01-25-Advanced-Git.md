@@ -106,11 +106,11 @@ It is worth noting when using this command your branch will checkout the commit 
 
 ### Git Revert
 
-Git Revert can be used to go back to a previous commit. For example, if your latest commit is C and want to go back to commit A, use the following:
+Git Revert can be used to dismiss a previous commit. For example, if your latest commit is C and want to pretend commit A didn't exist, use the following:
 
     git revert <commit A hash>
 
-This will take you back to the moment commit A was created, and you are now working as if commit B and C no longer exist.
+This will take your current work, and any commits in between such as B, and you are now working as if commit A no longer existed.
 
 ### Some Examples
 
