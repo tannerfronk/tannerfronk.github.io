@@ -9,15 +9,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam." />
 <meta property="og:description" content="Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam." />
-<link rel="canonical" href="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html" />
-<meta property="og:url" content="http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html" />
+<link rel="canonical" href="http://localhost:4000/blog/post/2021/01/26/Advanced-Git.html" />
+<meta property="og:url" content="http://localhost:4000/blog/post/2021/01/26/Advanced-Git.html" />
 <meta property="og:site_name" content="A dev blog by Tanner Fronk" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-01-25T05:33:23-07:00" />
+<meta property="article:published_time" content="2021-01-26T05:33:23-07:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Advanced Git" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","headline":"Advanced Git","dateModified":"2021-01-25T05:33:23-07:00","datePublished":"2021-01-25T05:33:23-07:00","url":"http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/post/2021/01/25/Advanced-Git.html"},"description":"Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Advanced Git","dateModified":"2021-01-26T05:33:23-07:00","datePublished":"2021-01-26T05:33:23-07:00","url":"http://localhost:4000/blog/post/2021/01/26/Advanced-Git.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/post/2021/01/26/Advanced-Git.html"},"description":"Less Commonly Used Git Features Git can get complex quickly, and it is important to know what to do when problems arise with any version control system. Since every developer relies on some sort of version control system, lets take a deep look at Git’s more advanced features that are less often used but important to know when you need to get yourself out of a jam.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="A dev blog by Tanner Fronk" /></head>
 <body><header class="site-header" role="banner">
@@ -42,7 +42,7 @@
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Advanced Git</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2021-01-25T05:33:23-07:00" itemprop="datePublished">Jan 25, 2021
+      <time class="dt-published" datetime="2021-01-26T05:33:23-07:00" itemprop="datePublished">Jan 26, 2021
       </time></p>
   </header>
 
@@ -159,12 +159,12 @@ pick 0e026d9 Starting new features
 
 <h3 id="git-revert">Git Revert</h3>
 
-<p>Git Revert can be used to go back to a previous commit. For example, if your latest commit is C and want to go back to commit A, use the following:</p>
+<p>Git Revert can be used to dismiss a previous commit. For example, if your latest commit is C and want to pretend commit A didn’t exist, use the following:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git revert &lt;commit A hash&gt;
 </code></pre></div></div>
 
-<p>This will take you back to the moment commit A was created, and you are now working as if commit B and C no longer exist.</p>
+<p>This will take your current work, and any commits in between such as B, and you are now working as if commit A no longer existed.</p>
 
 <h3 id="some-examples">Some Examples</h3>
 
@@ -194,7 +194,7 @@ pick 0e026d9 Starting new features
 
 <p>A git submodule is like Inception. A git repository inside of a git repository. A submodule would allow you to treat a directory within a project as it’s own project. This is useful to help keep separate changes to a specified directory from conflicting with your actual project. These are mostly used when a library is a part of a project, and its contents and changes are handled separately. One advantage to using a git submodule is that it allows you to keep the commits separated. This is hugely useful when libraries are only updated periodically and you need to see what was previously done when updating or making changes. While it is great at keeping your libraries clean and separate from your merge/commit history, there are some downsides. As you can imagine, this increases complexity of upkeep with each level of version control. If you aren’t careful you can create merge conflicts that are a headache to repair if you weren’t properly paying attention. If both repos are being edited at the same time, and you end up having a mismatch of versions if you aren’t careful. However, that last one is more of an issue with bigger projects and/or companies if communication on updating is not solid. When used correctly, git submodules can be great additions to projects and the libraries within.</p>
 
-  </div><a class="u-url" href="/blog/post/2021/01/25/Advanced-Git.html" hidden></a>
+  </div><a class="u-url" href="/blog/post/2021/01/26/Advanced-Git.html" hidden></a>
 </article>
 
       </div>
