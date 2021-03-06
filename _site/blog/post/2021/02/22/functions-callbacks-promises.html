@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Functions, Callbacks, and Promises | A dev blog by Tanner Fronk</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="Functions, Callbacks, and Promises" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Functions" />
+<meta property="og:description" content="Functions" />
+<link rel="canonical" href="http://localhost:4000/blog/post/2021/02/22/functions-callbacks-promises.html" />
+<meta property="og:url" content="http://localhost:4000/blog/post/2021/02/22/functions-callbacks-promises.html" />
+<meta property="og:site_name" content="A dev blog by Tanner Fronk" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-22T05:57:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Functions, Callbacks, and Promises" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Functions, Callbacks, and Promises","dateModified":"2021-02-22T05:57:00-07:00","datePublished":"2021-02-22T05:57:00-07:00","url":"http://localhost:4000/blog/post/2021/02/22/functions-callbacks-promises.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/post/2021/02/22/functions-callbacks-promises.html"},"description":"Functions","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="A dev blog by Tanner Fronk" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">A dev blog by Tanner Fronk</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Functions, Callbacks, and Promises</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-02-22T05:57:00-07:00" itemprop="datePublished">Feb 22, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="functions">Functions</h1>
+
+<p>Things can’t happen in programming without functions. There are multiple ways at declaring functions.</p>
+
+<p>This is the most basic way of declaring a function in JavaScript. You simply put function at the beginning, name it, then fill it in with what you want it to do:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function myFunc(a, b){
+    return a+b
+}
+</code></pre></div></div>
+
+<p>Another way to declare a function is inside of a variable:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const myFunc = function(a, b){
+    return a+b
+}
+</code></pre></div></div>
+
+<p>Then we have arrow functions which are close to the last example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const myFunc = (a, b) =&gt; {
+    return a+b
+}
+</code></pre></div></div>
+
+<p>All of these examples work the same and they all act as a function, and allow parameters to be passed in the parenthesis. As you can see in each example, I am returning variable a plus variable b. Returning the result of a function allows the result to be useable for other functions or whatever you have going on. In the above example this code would work by taking in the values of a and b, and returning the sum of both.</p>
+
+<h1 id="callbacks">Callbacks</h1>
+
+<p>A callback function is a function that is called within another function. They are used when something outside of the function needs to be ran as a part of another functions process. Lets say you have a function that will display the result of our function above:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function myCallback(sum){
+    document.getElementById('result').innerHTML = sum
+}
+</code></pre></div></div>
+
+<p>This function takes in the sum as a parameter, and all we need to do is get the function it’s parameter. So, when do we call it? Lets modify the example function from above to handle it:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function myFunc(a, b){
+    sum = a+b
+    myCallback(sum)
+}
+</code></pre></div></div>
+
+<p>Once myFunc is called, it will take in it’s parameters and add them together while assigning the value to the variable sum. It is then passed to the callback function as a parameter and that function is now called. Hypothetically, this would then display our result to whichever HTML element has the id of ‘result’. While this example may not be as complex as other callback function uses, they all follow this basic principle of being called within another function. They are used in real world situations often, such as using fetch() with a .then() function attached. .then() takes it first argument as a callback function for it to work.</p>
+
+<h1 id="promises">Promises</h1>
+
+<p>A promise in programming is used to wait for sufficient information before executing a task or function. A common use for promises is when retrieving data from an API. You have to wait for all the necessary data to come back, so how do you wait until you can run your function? By promising that once the data is received or the task is performed the next step can then be executed. Lets look at a common example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fetch(url)
+.then()
+</code></pre></div></div>
+
+<p>While this example isn’t super fleshed out, it can still demonstrate what a promise does. The fetch() function grabs all the data back available at a url. It may take a while for all of the information to come back, and we can’t work with it until it does. To handle this delay, we create a promise using .then(). This function will wait until the data comes back, and we can decide what to do with it once it does, that is all defined in the .then() function. This way, we can ensure that nothing starts happening until all of the data we are looking for is received. Due to JavaScripts asynchronous nature, everything will run at once regardless if the appropriate data is there or if the steps performed prior have finished. This creates a lot of issues, so we can control the order everything will run in using promises.</p>
+
+<h4 id="asyncawait">Async/Await</h4>
+
+<p>Normally you would need to define a promise then what happens after the promise is either resolved or rejected. Here is an example of what that looks like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const myPromise = new Promise((resolve, reject) =&gt;{
+    //code to handle what happens
+})
+</code></pre></div></div>
+
+<p>There is a lot going on with this function, but essentially you define what happens after the promise is fulfilled. Often, you would put a setTimeout() function inside the code above to wait a specific amount of time before performing an action. This is a lot to define each time you want to use a promise, so JavaScript has some great syntactical sugar to help. Instead of defining a new Promise, we can use the ‘async’ and ‘await’ syntax. Lets look at an example using our previous examples.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">let</span> <span class="n">sum</span> <span class="o">=</span> <span class="nf">myFunc</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">function</span> <span class="n">myFunc</span><span class="p">(</span><span class="kt">a</span><span class="p">,</span><span class="kt">b</span><span class="p">){</span>
+    <span class="n">sum</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+    <span class="k">return</span> <span class="n">sum</span>
+<span class="p">}</span>
+
+<span class="k">async</span> <span class="k">function</span> <span class="n">displayResult</span><span class="p">(</span><span class="kt">sum</span><span class="p">){</span>
+    <span class="k">await</span> <span class="n">sum</span>
+    <span class="n">document</span><span class="mf">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="s1">'result'</span><span class="p">)</span><span class="mf">.</span><span class="n">innerHTML</span> <span class="o">=</span> <span class="n">sum</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In this example, I am assigning the variable sum to myFunc and passing two integer parameters. Our displayResult function was defined using the async syntax, this means that it will run after the promise it is assigned is fulfilled. The variable sum has await used infront of it, so the promise is assigned to the variable and the function will wait until that promise has been fulfilled before it can continue on with the rest of the function. For this example, the HTML element with the id of ‘result’ will not be displayed with the sum until sum has been defined by the function that it is assigned to. It will all happen in this order: 1. myFunc will be called and ran, then return it’s value. 2. When displayResult has recognized that the value has been returned in the previous function, it will then run the rest of its defined steps.</p>
+
+  </div><a class="u-url" href="/blog/post/2021/02/22/functions-callbacks-promises.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">A dev blog by Tanner Fronk</li><li><a class="u-email" href="mailto:tannerfronk@gmail.com">tannerfronk@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/tannerfronk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">tannerfronk</span></a></li><li><a href="https://www.linkedin.com/in/tanner-fronk"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">tanner-fronk</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>This is a student blog for me to show off my development skills in DGM 3780</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
